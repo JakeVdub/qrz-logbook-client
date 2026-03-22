@@ -55,7 +55,7 @@ class QRZClient:
             "ACTION": "FETCH",
             "OPTION": ",".join(option_parts),
         }
-        return self._send_request("FETCH", params)
+        return self._send_request(action="FETCH", params=params)
 
     def insert_record(self, adif_data: str, replace_duplicates: bool = False) -> dict[str, Any]:
         if not adif_data or not adif_data.strip():
@@ -69,7 +69,7 @@ class QRZClient:
         if replace_duplicates:
             params["OPTION"] = "REPLACE"
 
-        return self._send_request("INSERT", params)
+        return self._send_request(action="INSERT", params=params)
 
     def status(self, log_ids: Iterable[int] | None = None) -> dict[str, Any]:
         params: dict[str, str] = {"ACTION": "STATUS"}
@@ -77,7 +77,7 @@ class QRZClient:
         if log_ids is not None:
             params["LOGIDS"] = _serialize_log_ids(log_ids)
 
-        response = self._send_request("STATUS", params)
+        response = self._send_request(action="STATUS", params=params)
         data_value = response.get("DATA")
 
         if isinstance(data_value, str) and data_value:
@@ -90,7 +90,7 @@ class QRZClient:
             "ACTION": "DELETE",
             "LOGIDS": _serialize_log_ids(log_ids),
         }
-        return self._send_request("DELETE", params)
+        return self._send_request(action="DELETE", params=params)
 
     def send_request(self, action: str, params: dict[str, str]) -> Response:
         headers = {"User-Agent": self.user_agent}
@@ -98,7 +98,7 @@ class QRZClient:
         return self.session.post(self.base_url, data=data, headers=headers, timeout=self.timeout)
 
     def _send_request(self, action: str, params: dict[str, str]) -> dict[str, Any]:
-        response = self.send_request(action, params)
+        response = self.send_request(action=action, params=params)
         response.raise_for_status()
         parsed = _parse_response_text(response.text)
         parsed.setdefault("ACTION", action)
