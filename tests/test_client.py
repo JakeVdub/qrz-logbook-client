@@ -53,14 +53,14 @@ class TestValidation(unittest.TestCase):
         with self.assertRaises(ValueError):
             _validate_user_agent("node-fetch/3.3.2")
 
-        _validate_user_agent("MyCoolUploadScript.py/1.0.0 (VA7STV)")
+        _validate_user_agent("MyCoolUploadScript.py/1.0.0 (YOUR-CALLSIGN)")
 
 
 class TestQRZClientMethods(unittest.TestCase):
     def setUp(self) -> None:
         self.client = QRZClient(
             api_key="ABCD-0A0B-1C1D-2E2F",
-            user_agent="MyCoolUploadScript.py/1.0.0 (VA7STV)",
+            user_agent="MyCoolUploadScript.py/1.0.0 (YOUR-CALLSIGN)",
         )
 
     def test_insert_record_parses_response(self) -> None:
@@ -84,12 +84,12 @@ class TestQRZClientMethods(unittest.TestCase):
         with patch.object(
             self.client,
             "send_request",
-            return_value=DummyResponse("RESULT=OK&DATA=bookid=1&owner=K1ABC"),
+            return_value=DummyResponse("RESULT=OK&DATA=bookid=1&owner=CALLSIGN"),
         ):
             result = self.client.status()
 
         self.assertEqual(result["RESULT"], "OK")
-        self.assertEqual(result["DATA"], {"bookid": "1", "owner": "K1ABC"})
+        self.assertEqual(result["DATA"], {"bookid": "1", "owner": "CALLSIGN"})
 
     def test_insert_record_raises_for_fail_result(self) -> None:
         with patch.object(

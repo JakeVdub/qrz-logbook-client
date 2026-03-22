@@ -30,7 +30,7 @@ from qrz_logbook_client import QRZClient
 
 client = QRZClient(
     api_key="YOUR-QRZ-API-KEY",
-    user_agent="MyCoolUploadScript.py/1.0.0 (VA7STV)",
+    user_agent="MyCoolUploadScript.py/1.0.0 (YOUR-CALLSIGN)",
 )
 
 # STATUS
@@ -38,7 +38,7 @@ status_response = client.status()
 print(status_response)
 
 # INSERT
-adif = "<band:3>20m<mode:3>SSB<call:5>K1ABC<qso_date:8>20260322<station_callsign:5>W1XYZ<time_on:4>1830<eor>"
+adif = "<band:3>20m<mode:3>SSB<call:8>CALLSIGN<qso_date:8>20260322<station_callsign:13>YOUR-CALLSIGN<time_on:4>1830<eor>"
 insert_response = client.insert_record(adif)
 print(insert_response)
 
@@ -58,7 +58,7 @@ from qrz_logbook_client import setup, fetch_records
 
 setup(
     api_key="YOUR-QRZ-API-KEY",
-    user_agent="MyCoolUploadScript.py/1.0.0 (VA7STV)",
+    user_agent="MyCoolUploadScript.py/1.0.0 (YOUR-CALLSIGN)",
 )
 
 response = fetch_records(limit=100, offset=0)
