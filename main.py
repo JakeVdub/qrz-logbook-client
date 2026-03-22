@@ -1,4 +1,4 @@
-from ham_radio_log_utils import (
+from qrz_logbook_client import (
     BASE_URL,
     DEFAULT_USER_AGENT,
     QRZAPIError,

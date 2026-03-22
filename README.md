@@ -1,4 +1,4 @@
-# Ham Radio Log Utils
+# QRZ Logbook Client
 
 Python utilities for amateur radio log workflows, including a QRZ Logbook API client.
 
@@ -20,13 +20,13 @@ pip install -e .
 ### From GitHub (after publishing)
 
 ```bash
-pip install git+https://github.com/jakevdub/ham-radio-log-utils.git
+pip install git+https://github.com/jakevdub/qrz-logbook-client.git
 ```
 
 ## Quick Start (Recommended)
 
 ```python
-from ham_radio_log_utils import QRZClient
+from qrz_logbook_client import QRZClient
 
 client = QRZClient(
     api_key="YOUR-QRZ-API-KEY",
@@ -54,7 +54,7 @@ print(delete_response)
 ## Convenience Function Style
 
 ```python
-from ham_radio_log_utils import setup, fetch_records
+from qrz_logbook_client import setup, fetch_records
 
 setup(
     api_key="YOUR-QRZ-API-KEY",

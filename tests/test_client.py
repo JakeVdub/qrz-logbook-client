@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch
 
-from ham_radio_log_utils.client import (
+from qrz_logbook_client.client import (
     QRZAPIError,
     QRZClient,
     _parse_response_text,
