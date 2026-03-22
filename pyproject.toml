@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ham-radio-log-utils"
+version = "0.1.0"
+description = "Utilities for interacting with ham radio logs, including a QRZ Logbook API client"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "Jacob Vande Walle" }
+]
+dependencies = [
+  "requests>=2.31.0"
+]
+keywords = ["ham radio", "amateur radio", "radio", "qrz", "qrz.com", "adif", "adi", "api", "logbook"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Communications :: Ham Radio"
+]
+
+[project.urls]
+Homepage = "https://github.com/jakevdub/ham-radio-log-utils"
+Repository = "https://github.com/jakevdub/ham-radio-log-utils"
+Issues = "https://github.com/jakevdub/ham-radio-log-utils/issues"
+
+[tool.setuptools]
+include-package-data = false
+
+[tool.setuptools.packages.find]
+include = ["ham_radio_log_utils*"]
+exclude = ["ham-radio-log-utils*", "tests*"]
